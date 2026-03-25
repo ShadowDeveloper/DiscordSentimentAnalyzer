@@ -1,0 +1,74 @@
+# Model Configuration
+model:
+  # Base model for tokenization and architecture
+  base_model: "distilroberta-base"
+
+  # Trained model paths
+  predict_model: "models/distilroberta_model_14105.pt"
+  test_model: "models/distilroberta_model_14105.pt"
+
+  # Model hyperparameters
+  labels:
+    - "toxicity"
+    - "severe_toxicity"
+    - "obscene"
+    - "threat"
+    - "insult"
+    - "identity_attack"
+    - "sexual_explicit"
+
+  # Training parameters
+  training:
+    n_epochs: 10
+    batch_size: 64
+    patience: 3
+    max_length: 256
+    learning_rate: 5e-5
+
+# Dataset Configuration
+dataset:
+  name: "google/civil_comments"
+  splits:
+    train: "train[10%:]"
+    validation: "validation"
+    test: "test"
+
+# File Paths
+paths:
+  # Input data
+  messages_input: "C:/Users/<USER>/Downloads/package/Messages"
+  messages_file: "messages.json"
+
+  # Output files
+  collected_messages: "collected_messages.json"
+
+  # Model checkpoint directory
+  model_checkpoint_dir: "models"
+  model_checkpoint_prefix: "distilroberta"
+
+  # Log files
+  default_log: "model.log"
+  collect_log: "collect_msgs.log"
+  analysis_log: "analysis.log"
+  predict_log: "predict.log"
+
+# Data Processing
+processing:
+  # Message merging threshold (seconds)
+  message_merge_threshold: 30
+
+  # Text cleaning patterns
+  patterns:
+    user_mention: "<@\\d*>"
+    user_mention_replacement: "<@USER>"
+    url: "https?://\\S*"
+    url_replacement: "<URL>"
+    bot_command: "!.*"
+    bot_command_replacement: "<BOT_COMMAND>"
+
+# Logging Configuration
+logging:
+  default_log_path: "model.log"
+  timestamp_format_utc: "%d %B, %Y  %H:%M:%S"
+  timestamp_format_local: "%d %B, %Y  %H:%M:%S"
+  timezone_local: "CT"
