@@ -44,6 +44,8 @@ python train.py
 This will train the model and save checkpoints to the `models/` directory.
 ~1 hour for 10 epochs on 8xA500 GPUs (200 TFLOPS) using the default configuration. Adjust `config.yml` for different settings or hardware.
 
+If you don't wish to train the model yourself, you can [download it from the HuggingFace repository](https://huggingface.co/ShadowProgrammer/DiscordSentimentAnalysis).
+
 ### Basic Prediction
 
 ```
